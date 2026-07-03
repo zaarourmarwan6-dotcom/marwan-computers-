@@ -484,6 +484,25 @@ window.addEventListener('scroll',()=>{document.getElementById('mainNav').classLi
 document.addEventListener('DOMContentLoaded',()=>{renderHome();updateCart()});
 </script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<script>document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{if(window.lucide)lucide.createIcons()},150)})</script>
+<script>
+  fetch('products.json')
+    .then(response => response.json())
+    .then(products => {
+      let container = document.getElementById('products');
+      products.forEach(p => {
+        container.innerHTML += `
+          <div>
+            <h2>${p.name}</h2>
+            <p>السعر: $${p.price}</p>
+            <p>${p.specs}</p>
+            <img src="${p.image}" width="200">
+          </div>
+        `;
+      });
+    });
+</script>
+
 </body>
 </html>
+
+  <script>document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{if(window.lucide)lucide.createIcons()},150)})</script>
