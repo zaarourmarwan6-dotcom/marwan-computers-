@@ -484,6 +484,12 @@ window.addEventListener('scroll',()=>{document.getElementById('mainNav').classLi
 document.addEventListener('DOMContentLoaded',()=>{renderHome();updateCart()});
 </script>
 <script src="https://unpkg.com/lucide@latest"></script>
+<section>
+  <h2>المنتجات</h2>
+
+  <div id="products"></div>
+</section>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
@@ -503,18 +509,23 @@ const db = getFirestore(app);
 async function loadProducts() {
   const snapshot = await getDocs(collection(db, "products"));
 
-  let container = document.getElementById("products");
+  const container = document.getElementById("products");
   container.innerHTML = "";
+
+  if (snapshot.empty) {
+    container.innerHTML = "<p>لا توجد منتجات</p>";
+    return;
+  }
 
   snapshot.forEach((doc) => {
     const p = doc.data();
 
     container.innerHTML += `
-      <div>
-        <h2>${p.name}</h2>
-        <p>السعر: $${p.price}</p>
-        <p>${p.description}</p>
-        <img src="${p.image}" width="200">
+      <div style="border:1px solid #ddd; padding:10px; margin:10px;">
+        <h2>${p.name || ""}</h2>
+        <p>السعر: $${p.price || ""}</p>
+        <p>${p.description || ""}</p>
+        <img src="${p.image || ""}" width="200">
       </div>
     `;
   });
@@ -522,14 +533,11 @@ async function loadProducts() {
 
 loadProducts();
 </script>
-<section>
-  <h2>المنتجات</h2>
 
-  <div id="products">
-    <!-- المنتجات رح تظهر هون تلقائيًا -->
-  </div>
-</section>
-</body>
-</html>
-
-  <script>document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{if(window.lucide)lucide.createIcons()},150)})</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    if (window.lucide) lucide.createIcons();
+  }, 150);
+});
+</script>
