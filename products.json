@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Dell 5500",
+    "price": 600,
+    "specs": "Intel i7 10th Gen, 16GB RAM, 512GB NVMe, RTX 2060, 15.6'' 144Hz",
+    "image": "images/dell5500.jpg"
+  }
+]
