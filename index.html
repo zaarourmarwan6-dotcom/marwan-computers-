@@ -484,22 +484,43 @@ window.addEventListener('scroll',()=>{document.getElementById('mainNav').classLi
 document.addEventListener('DOMContentLoaded',()=>{renderHome();updateCart()});
 </script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<script>
-  fetch('products.json')
-    .then(response => response.json())
-    .then(products => {
-      let container = document.getElementById('products');
-      products.forEach(p => {
-        container.innerHTML += `
-          <div>
-            <h2>${p.name}</h2>
-            <p>السعر: $${p.price}</p>
-            <p>${p.specs}</p>
-            <img src="${p.image}" width="200">
-          </div>
-        `;
-      });
-    });
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyApGdzrA4CU5at0B4Qvc8J_Dp3-ElfZV94",
+  authDomain: "marwan-computer.firebaseapp.com",
+  projectId: "marwan-computer",
+  storageBucket: "marwan-computer.firebasestorage.app",
+  messagingSenderId: "466148301340",
+  appId: "1:466148301340:web:0bd1766ded93d45e09ddd9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadProducts() {
+  const snapshot = await getDocs(collection(db, "products"));
+
+  let container = document.getElementById("products");
+  container.innerHTML = "";
+
+  snapshot.forEach((doc) => {
+    const p = doc.data();
+
+    container.innerHTML += `
+      <div>
+        <h2>${p.name}</h2>
+        <p>السعر: $${p.price}</p>
+        <p>${p.description}</p>
+        <img src="${p.image}" width="200">
+      </div>
+    `;
+  });
+}
+
+loadProducts();
 </script>
 
 </body>
