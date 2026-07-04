@@ -773,13 +773,6 @@ function showToast(msg) {
   toast.textContent = msg;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-function handleContact(e) {
-  e.preventDefault();
-  showToast("تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.");
-  document.getElementById('cForm').reset();
-}
-</script>
+<script src="script.js"></script>
 </body>
 </html>
