@@ -123,60 +123,56 @@ function checkoutWhatsApp() {
 }
 
 function renderShop() {
-  const shopGrid = document.getElementById('shopGrid');
+  // البحث عن الحاويات بالأسماء المتوقعة في ملف HTML الخاص بك
+  const shopGrid = document.getElementById('shopGrid') || document.querySelector('.products-grid') || document.querySelector('.grid');
   const featuredGrid = document.getElementById('featuredGrid');
   const searchQuery = document.getElementById('shopSearch') ? document.getElementById('shopSearch').value.toLowerCase() : '';
   
-  const categories = ["الكل", ...new Set(products.map(p => p.category))];
-  const filtersContainer = document.getElementById('shopFilters');
-  if(filtersContainer) {
-    filtersContainer.innerHTML = categories.map(cat => 
-      `<button class="filter-tab ${currentCategory === cat ? 'active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`
-    ).join('');
-  }
-
-  let filtered = products.filter(p => {
-    const matchesSearch = p.name.toLowerCase().includes(searchQuery) || p.specs.toLowerCase().includes(searchQuery);
-    const matchesCat = currentCategory === "الكل" || p.category === currentCategory;
-    return matchesSearch && matchesCat;
-  });
+  if (!products || products.length === 0) return;
 
   const generateCard = p => `
-    <div class="product-card">
-      <div class="product-card-image">
-        <i data-lucide="monitor" width="48" height="48" style="opacity:0.2;"></i>
-      </div>
+    <div class="product-card" style="border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; background: var(--bg-card, #0d1530); margin: 10px;">
       <div class="product-card-body">
-        <div class="product-card-category">${p.category}</div>
-        <div class="product-card-name">${p.name}</div>
-        <div class="product-card-specs">${p.specs}</div>
-        <div class="availability ${p.status === 'in' ? 'in-stock' : 'out-stock'}">
-          <span class="availability-dot"></span> ${p.status === 'in' ? 'متوفر' : 'نفذت الكمية'}
-        </div>
-        <div class="product-card-footer">
-          <div class="product-price">$${p.price}</div>
-          <div class="product-actions">
-            <button class="cart-btn" onclick="addToCart(${p.id})" ${p.status === 'out' ? 'disabled style="opacity:0.5;"' : ''}><i data-lucide="shopping-cart" width="14" height="14"></i></button>
-          </div>
+        <div class="product-card-category" style="font-size: 12px; color: var(--primary, #0066ff);">${p.category}</div>
+        <h3 class="product-card-name" style="margin: 5px 0; font-size: 18px; color: #fff;">${p.name}</h3>
+        <p class="product-card-specs" style="font-size: 13px; opacity: 0.7; color: #ccc;">${p.specs}</p>
+        <div class="product-card-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+          <span class="product-price" style="font-weight: bold; color: #fff; font-size: 20px;">$${p.price}</span>
+          <button class="cart-btn" onclick="addToCart(${p.id})" style="background: var(--primary, #0066ff); color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+            إضافة للسلة
+          </button>
         </div>
       </div>
     </div>
   `;
 
-  if(shopGrid) {
-    shopGrid.innerHTML = filtered.map(generateCard).join('');
-    document.getElementById('shopEmpty').style.display = filtered.length === 0 ? 'block' : 'none';
+  // عرض المنتجات في الحاوية الرئيسية المتاحة للمتجر
+  if (shopGrid) {
+    shopGrid.innerHTML = products.map(generateCard).join('');
   }
 
-  if(featuredGrid) {
+  // عرض المنتجات في واجهة الصفحة الرئيسية أيضاً لضمان ظهورها فوراً
+  if (featuredGrid) {
     featuredGrid.innerHTML = products.slice(0, 3).map(generateCard).join('');
-    document.getElementById('homeEmpty').style.display = products.length === 0 ? 'block' : 'none';
+  } else if (!shopGrid && document.querySelector('main')) {
+    // إذا لم يجد الحاويات المخصصة، سيقوم بإنشاء قسم خاص بالمنتجات داخل الواجهة فوراً
+    let fallbackGrid = document.getElementById('fallback-products');
+    if (!fallbackGrid) {
+      fallbackGrid = document.createElement('div');
+      fallbackGrid.id = 'fallback-products';
+      fallbackGrid.style.display = 'grid';
+      fallbackGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(280px, 1fr))';
+      fallbackGrid.style.gap = '20px';
+      fallbackGrid.style.padding = '40px 20px';
+      fallbackGrid.style.maxWidth = '1200px';
+      fallbackGrid.style.margin = '0 auto';
+      document.querySelector('main').appendChild(fallbackGrid);
+    }
+    fallbackGrid.innerHTML = products.map(generateCard).join('');
   }
   
-  if(window.lucide) lucide.createIcons();
+  if (window.lucide) lucide.createIcons();
 }
-
-function setCategory(cat) {
   currentCategory = cat;
   renderShop();
 }
