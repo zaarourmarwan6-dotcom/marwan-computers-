@@ -268,7 +268,13 @@ td{padding:12px 18px;font-size:.85rem;vertical-align:middle}
         <i data-lucide="search" width="16" height="16" color="#4a5568"></i>
         <input type="text" placeholder="بحث باسم المنتج أو المواصفات..." id="shopSearch" oninput="renderShop()">
       </div>
-      <div class="filter-tabs" id="shopFilters"></div>
+      <div class="filter-tabs" id="shopFilters">
+        <button class="filter-tab active" onclick="setCategory('الكل')">الكل</button>
+        <button class="filter-tab" onclick="setCategory('لابتوبات')">لابتوبات</button>
+        <button class="filter-tab" onclick="setCategory('شبكات')">شبكات</button>
+        <button class="filter-tab" onclick="setCategory('أجهزة عرض')">أجهزة عرض</button>
+        <button class="filter-tab" onclick="setCategory('أجهزة ومستلزمات')">أجهزة ومستلزمات</button>
+      </div>
     </div>
   </div>
   <section class="section" style="padding-top:0">
@@ -356,423 +362,60 @@ td{padding:12px 18px;font-size:.85rem;vertical-align:middle}
       <form id="cForm" onsubmit="handleContact(event)">
         <div class="form-group"><label>الاسم الكامل</label><input type="text" required></div>
         <div class="form-group"><label>رقم الهاتف</label><input type="tel" required></div>
-        <div class="form-group"><label>الرسالة</label><textarea required></textarea></div>
+        <div class="form-group"><label>الرسالة</label><textarea required placeholder="اكتب استفسارك هنا..."></textarea></div>
         <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">إرسال الرسالة</button>
       </form>
     </div>
   </div>
 </div>
 
-<div class="admin-panel page" id="page-admin">
-  <div class="page-title">
-    <h2>لوحة تحكم المدير</h2>
-    <button class="btn btn-primary" onclick="openProductModal()"><i data-lucide="plus" width="16" height="16"></i> إضافة منتج جديد</button>
-  </div>
-  <div class="table-wrap">
-    <div class="table-toolbar">
-      <div class="table-search"><i data-lucide="search" width="14" height="14"></i><input type="text" placeholder="البحث في المخزن..." id="adminSearch" oninput="renderAdminTable()"></div>
+<div class="login-modal" id="loginModal">
+  <div class="login-box">
+    <h2>تسجيل دخول الإدارة</h2>
+    <p>خاص بمدير الموقع لتعديل وإدارة البيانات</p>
+    <div class="login-error" id="loginErr">كلمة المرور غير صحيحة!</div>
+    <div class="form-group">
+      <label>كلمة المرور</label>
+      <input type="password" id="loginPass" placeholder="••••••••">
     </div>
-    <table style="width: 100%; min-width: 600px;">
-      <thead>
-        <tr>
-          <th>المنتج</th>
-          <th>التصنيف</th>
-          <th>السعر</th>
-          <th>الحالة</th>
-          <th>إجراءات</th>
-        </tr>
-      </thead>
-      <tbody id="adminTableBody"></tbody>
-    </table>
+    <div style="display:flex; gap:10px; margin-top:15px;">
+      <button class="btn btn-primary" onclick="handleLogin()" style="flex:1; justify-content:center;">دخول</button>
+      <button class="btn btn-outline" onclick="closeLogin()" style="flex:1; justify-content:center;">إلغاء</button>
+    </div>
   </div>
 </div>
-
-<footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <h3>Marwan Computers</h3>
-      <p>خياراتك التقنية الأفضل والأكثر أماناً في طرابلس والقبة.</p>
-    </div>
-    <div class="footer-col">
-      <h4>روابط سريعة</h4>
-      <ul>
-        <li><a href="#" onclick="navTo('home')">الرئيسية</a></li>
-        <li><a href="#" onclick="navTo('products')">المنتجات</a></li>
-        <li><a href="#" onclick="navTo('services')">الخدمات</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>الدعم</h4>
-      <ul>
-        <li><a href="#" onclick="navTo('contact')">اتصل بنا</a></li>
-        <li><a href="https://wa.me/96181545079" target="_blank">دعم واتساب</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Marwan Computers. جميع الحقوق محفوظة.</p>
-    <div class="footer-social">
-      <a href="https://wa.me/96181545079" target="_blank"><i data-lucide="message-square" width="16" height="16"></i></a>
-      <a href="#" onclick="openLogin()"><i data-lucide="lock" width="16" height="16"></i></a>
-    </div>
-  </div>
-</footer>
 
 <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 <div class="cart-sidebar" id="cartSidebar">
   <div class="cart-header">
-    <h3>سلة التسوق</h3>
+    <h3>🛒 سلة المشتريات</h3>
     <button onclick="toggleCart()"><i data-lucide="x" width="20" height="20"></i></button>
   </div>
-  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">السلة فارغة حالياً</div>
+  </div>
   <div class="cart-footer">
-    <div class="cart-total"><span>المجموع:</span><span id="cartTotalSum">$0</span></div>
-    <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="checkoutWhatsApp()">تأكيد الطلب عبر واتساب</button>
-  </div>
-</div>
-
-<div class="modal-overlay" id="productModal" onclick="closeProductModal(event)">
-  <div class="modal">
-    <div class="modal-header"><h2 id="modalTitle">إضافة منتج</h2><button onclick="closeProductModal(null)"><i data-lucide="x" width="20" height="20"></i></button></div>
-    <form id="productForm" onsubmit="saveProduct(event)">
-      <input type="hidden" id="pId">
-      <div class="form-group"><label>اسم المنتج</label><input type="text" id="pName" required></div>
-      <div class="form-row">
-        <div class="form-group"><label>التصنيف</label><input type="text" id="pCategory" required placeholder="مثال: لابتوب، كاميرات"></div>
-        <div class="form-group"><label>السعر ($)</label><input type="number" id="pPrice" required step="0.01"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>المواصفات</label><input type="text" id="pSpecs" placeholder="رام، هارد، دقة..."></div>
-        <div class="form-group">
-          <label>الحالة</label>
-          <select id="pStatus">
-            <option value="in">متوفر</option>
-            <option value="out">غير متوفر</option>
-          </select>
-        </div>
-      </div>
-      <div class="modal-actions">
-        <button type="button" class="btn btn-outline" onclick="closeProductModal(null)">إلغاء</button>
-        <button type="submit" class="btn btn-primary">حفظ المنتج</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="login-modal" id="loginModal">
-  <div class="login-box">
-    <h2>دخول الإدارة</h2>
-    <p>خاص بمدير الموقع مروان</p>
-    <div class="login-error" id="loginErr">كلمة المرور خاطئة!</div>
-    <div class="form-group" style="text-align:right;"><label>كلمة المرور</label><input type="password" id="loginPass"></div>
-    <div style="display:flex; gap:10px; margin-top:15px;">
-      <button class="btn btn-outline" style="flex:1; justify-content:center;" onclick="closeLogin()">إلغاء</button>
-      <button class="btn btn-primary" style="flex:1; justify-content:center;" onclick="handleLogin()">دخول</button>
+    <div class="cart-total">
+      <span>المجموع:</span>
+      <span id="cartTotalSum">$0</span>
     </div>
+    <button class="btn btn-accent" onclick="checkoutWhatsApp()" style="width:100%; justify-content:center; gap:10px;">
+      <i data-lucide="message-circle" width="18" height="18"></i> إتمام الطلب عبر واتساب
+    </button>
   </div>
 </div>
 
-<a href="https://wa.me/96181545079" class="wa-float" target="_blank"><i data-lucide="message-circle" width="24" height="24" color="white"></i></a>
+<a href="https://wa.me/96181545079" class="wa-float" target="_blank"><i data-lucide="message-circle" width="26" height="26" color="white"></i></a>
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i data-lucide="arrow-up" width="18" height="18"></i></button>
-
 <div class="toast" id="toast"></div>
 
-<script>
-// بيانات المنتجات الافتراضية
-let products = [
-  { id: 1, name: "Lenovo ThinkPad X1 Carbon", category: "لابتوب", price: 850, specs: "Core i7 / 16GB RAM / 512GB SSD", status: "in" },
-  { id: 2, name: "Hikvision IP Camera 4MP", category: "كاميرات مراقبة", price: 45, specs: "4MP / Night Vision / Outdoor", status: "in" },
-  { id: 3, name: "ASUS ROG Gaming PC", category: "كمبيوترات", price: 1200, specs: "RTX 4060 / i5-13th / 16GB RAM", status: "in" }
-];
-let cart = [];
-let currentCategory = "الكل";
+<footer class="footer">
+  <div class="footer-bottom">
+    <p>© 2026 Marwan Computers. جميع الحقوق محفوظة.</p>
+    <p>تم التطوير بكل فخر لدعم أعمالك التقنية</p>
+  </div>
+</footer>
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (window.lucide) lucide.createIcons();
-  renderShop();
-});
-
-// التنقل بين الصفحات
-function navTo(pageId) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  
-  const targetPage = document.getElementById(`page-${pageId}`);
-  if(targetPage) targetPage.classList.add('active');
-  
-  const navLink = document.querySelector(`.nav-links a[data-page="${pageId}"]`);
-  if(navLink) navLink.classList.add('active');
-  
-  window.scrollTo(0,0);
-}
-
-// تعديل مظهر الهيدر عند النزول
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('mainNav');
-  const scrollTop = document.getElementById('scrollTop');
-  if(window.scrollY > 50) {
-    nav.classList.add('scrolled');
-    scrollTop.classList.add('visible');
-  } else {
-    nav.classList.remove('scrolled');
-    scrollTop.classList.remove('visible');
-  }
-});
-
-// إدارة السلة
-function toggleCart() {
-  document.getElementById('cartOverlay').classList.toggle('open');
-  document.getElementById('cartSidebar').classList.toggle('open');
-}
-function toggleMobile() {
-  document.getElementById('mobileNav').classList.toggle('open');
-}
-
-function addToCart(id) {
-  const prod = products.find(p => p.id === id);
-  if(!prod || prod.status === 'out') return;
-  
-  const existing = cart.find(item => item.id === id);
-  if(existing) {
-    existing.qty++;
-  } else {
-    cart.push({ ...prod, qty: 1 });
-  }
-  updateCartUI();
-  showToast("تم إضافة المنتج إلى السلة");
-}
-
-function updateCartQty(id, delta) {
-  const item = cart.find(i => i.id === id);
-  if(!item) return;
-  item.qty += delta;
-  if(item.qty <= 0) {
-    cart = cart.filter(i => i.id !== id);
-  }
-  updateCartUI();
-}
-
-function updateCartUI() {
-  const badge = document.getElementById('cartBadge');
-  const itemsContainer = document.getElementById('cartItems');
-  const totalSum = document.getElementById('cartTotalSum');
-  
-  const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
-  badge.textContent = totalCount;
-  badge.style.display = totalCount > 0 ? 'flex' : 'none';
-  
-  if(cart.length === 0) {
-    itemsContainer.innerHTML = '<div class="cart-empty">السلة فارغة حالياً</div>';
-    totalSum.textContent = "$0";
-    return;
-  }
-  
-  let html = '';
-  let total = 0;
-  cart.forEach(item => {
-    total += item.price * item.qty;
-    html += `
-      <div class="cart-item">
-        <div class="cart-item-info">
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-price">$${item.price}</div>
-          <div class="cart-item-qty">
-            <button onclick="updateCartQty(${item.id}, -1)">-</button>
-            <span>${item.qty}</span>
-            <button onclick="updateCartQty(${item.id}, 1)">+</button>
-          </div>
-          <div class="cart-item-remove" onclick="updateCartQty(${item.id}, -${item.qty})">حذف</div>
-        </div>
-      </div>
-    `;
-  });
-  itemsContainer.innerHTML = html;
-  totalSum.textContent = `$${total}`;
-}
-
-function checkoutWhatsApp() {
-  if(cart.length === 0) return;
-  let msg = "مرحباً Marwan Computers، أود طلب المنتجات التالية:\n\n";
-  let total = 0;
-  cart.forEach(item => {
-    msg += `- ${item.name} (العدد: ${item.qty}) -> $${item.price * item.qty}\n`;
-    total += item.price * item.qty;
-  });
-  msg += `\nالمجموع الكلي: $${total}`;
-  window.open(`https://wa.me/96181545079?text=${encodeURIComponent(msg)}`, '_blank');
-}
-
-// عرض المنتجات في المتجر والصفحة الرئيسية
-function renderShop() {
-  const shopGrid = document.getElementById('shopGrid');
-  const featuredGrid = document.getElementById('featuredGrid');
-  const searchQuery = document.getElementById('shopSearch') ? document.getElementById('shopSearch').value.toLowerCase() : '';
-  
-  const categories = ["الكل", ...new Set(products.map(p => p.category))];
-  const filtersContainer = document.getElementById('shopFilters');
-  if(filtersContainer) {
-    filtersContainer.innerHTML = categories.map(cat => 
-      `<button class="filter-tab ${currentCategory === cat ? 'active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`
-    ).join('');
-  }
-
-  let filtered = products.filter(p => {
-    const matchesSearch = p.name.toLowerCase().includes(searchQuery) || p.specs.toLowerCase().includes(searchQuery);
-    const matchesCat = currentCategory === "الكل" || p.category === currentCategory;
-    return matchesSearch && matchesCat;
-  });
-
-  const generateCard = p => `
-    <div class="product-card">
-      <div class="product-card-image">
-        <i data-lucide="monitor" width="48" height="48" style="opacity:0.2;"></i>
-      </div>
-      <div class="product-card-body">
-        <div class="product-card-category">${p.category}</div>
-        <div class="product-card-name">${p.name}</div>
-        <div class="product-card-specs">${p.specs}</div>
-        <div class="availability ${p.status === 'in' ? 'in-stock' : 'out-stock'}">
-          <span class="availability-dot"></span> ${p.status === 'in' ? 'متوفر' : 'نفذت الكمية'}
-        </div>
-        <div class="product-card-footer">
-          <div class="product-price">$${p.price}</div>
-          <div class="product-actions">
-            <button class="cart-btn" onclick="addToCart(${p.id})" ${p.status === 'out' ? 'disabled style="opacity:0.5;"' : ''}><i data-lucide="shopping-cart" width="14" height="14"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  if(shopGrid) {
-    shopGrid.innerHTML = filtered.map(generateCard).join('');
-    document.getElementById('shopEmpty').style.display = filtered.length === 0 ? 'block' : 'none';
-  }
-
-  if(featuredGrid) {
-    featuredGrid.innerHTML = products.slice(0, 3).map(generateCard).join('');
-    document.getElementById('homeEmpty').style.display = products.length === 0 ? 'block' : 'none';
-  }
-  
-  if(window.lucide) lucide.createIcons();
-}
-
-function setCategory(cat) {
-  currentCategory = cat;
-  renderShop();
-}
-
-// نظام إدارة لوحة التحكم (مروان)
-function openLogin() { document.getElementById('loginModal').classList.add('open'); }
-function closeLogin() { document.getElementById('loginModal').classList.remove('open'); document.getElementById('loginErr').style.display='none'; }
-function handleLogin() {
-  const pass = document.getElementById('loginPass').value;
-  if(pass === "marwan2026") { 
-    document.getElementById('adminBar').classList.add('visible');
-    document.body.style.paddingTop = "44px";
-    closeLogin();
-    showToast("مرحباً بك يا مدير!");
-  } else {
-    document.getElementById('loginErr').style.display = 'block';
-  }
-}
-function logout() {
-  document.getElementById('adminBar').classList.remove('visible');
-  document.body.style.paddingTop = "0";
-  navTo('home');
-}
-function showAdminPanel() {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-admin').classList.add('active');
-  renderAdminTable();
-}
-
-function renderAdminTable() {
-  const tbody = document.getElementById('adminTableBody');
-  const q = document.getElementById('adminSearch').value.toLowerCase();
-  let filtered = products.filter(p => p.name.toLowerCase().includes(q));
-
-  tbody.innerHTML = filtered.map(p => `
-    <tr>
-      <td>
-        <div class="product-cell">
-          <div class="cell-info"><h4>${p.name}</h4><span>${p.specs}</span></div>
-        </div>
-      </td>
-      <td>${p.category}</td>
-      <td>$${p.price}</td>
-      <td><span class="status-badge ${p.status === 'in' ? 's-in' : 's-out'}">${p.status === 'in' ? 'متوفر' : 'نفد'}</span></td>
-      <td class="actions-cell">
-        <button class="btn-icon" onclick="editProduct(${p.id})"><i data-lucide="edit" width="14" height="14"></i></button>
-        <button class="btn-icon" style="color:var(--error);" onclick="deleteProduct(${p.id})"><i data-lucide="trash-2" width="14" height="14"></i></button>
-      </td>
-    </tr>
-  `).join('');
-  if(window.lucide) lucide.createIcons();
-}
-
-function openProductModal() {
-  document.getElementById('productForm').reset();
-  document.getElementById('pId').value = '';
-  document.getElementById('modalTitle').textContent = "إضافة منتج جديد";
-  document.getElementById('productModal').classList.add('open');
-}
-function closeProductModal(e) {
-  if(!e || e.target.classList.contains('modal-overlay')) {
-    document.getElementById('productModal').classList.remove('open');
-  }
-}
-
-function saveProduct(e) {
-  e.preventDefault();
-  const id = document.getElementById('pId').value;
-  const name = document.getElementById('pName').value;
-  const category = document.getElementById('pCategory').value;
-  const price = parseFloat(document.getElementById('pPrice').value);
-  const specs = document.getElementById('pSpecs').value;
-  const status = document.getElementById('pStatus').value;
-  
-  if(id) {
-    const index = products.findIndex(p => p.id == id);
-    if(index !== -1) products[index] = { id: parseInt(id), name, category, price, specs, status };
-  } else {
-    const newId = products.length ? Math.max(...products.map(p => p.id)) + 1 : 1;
-    products.push({ id: newId, name, category, price, specs, status });
-  }
-  
-  closeProductModal(null);
-  renderShop();
-  renderAdminTable();
-  showToast("تم حفظ المنتج بنجاح");
-}
-
-function editProduct(id) {
-  const p = products.find(prod => prod.id === id);
-  if(!p) return;
-  document.getElementById('pId').value = p.id;
-  document.getElementById('pName').value = p.name;
-  document.getElementById('pCategory').value = p.category;
-  document.getElementById('pPrice').value = p.price;
-  document.getElementById('pSpecs').value = p.specs;
-  document.getElementById('pStatus').value = p.status;
-  document.getElementById('modalTitle').textContent = "تعديل المنتج";
-  document.getElementById('productModal').classList.add('open');
-}
-
-function deleteProduct(id) {
-  if(confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
-    products = products.filter(p => p.id !== id);
-    renderShop();
-    renderAdminTable();
-    showToast("تم حذف المنتج");
-  }
-}
-
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3000);
 <script src="script.js"></script>
 </body>
 </html>
