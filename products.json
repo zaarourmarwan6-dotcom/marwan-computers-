@@ -104,25 +104,3 @@
     "category": "أجهزة ومستلزمات",
     "price": 125,
     "specs": "External HDD USB 3.0 | 4TB Storage Capacity | Portable Drive with Software",
-    "image": "https://i.ibb.co/YBJgWJ9S/Whats-App-Image-2026-07-03-at-2-50-40-PM.jpg",
-    "status": "in"
-  },
-  {
-    "id": 13,
-    "name": "Bloody V7M Gaming Mouse 3200 CPI",
-    "category": "أجهزة ومستلزمات",
-    "price": 22,
-    "specs": "Gaming Mouse 3200 CPI | 160K Onboard Memory | 1,000 Hz Report Rate | Metal X'Glide Armor Boot",
-    "image": "https://i.ibb.co/wZpX8N3d/Whats-App-Image-2026-07-03-at-2-50-41-PM.jpg",
-    "status": "in"
-  },
-  {
-    "id": 14,
-    "name": "Canon i-SENSYS MF3010 Laser All-In-One",
-    "category": "أجهزة ومستلزمات",
-    "price": 215,
-    "specs": "Laser All-In-One Printer | Print, Scan, and Copy easily from your desktop | Uses Cartridge 725",
-    "image": "https://i.ibb.co/996R9rYn/Whats-App-Image-2026-07-03-at-2-50-43-PM-1.jpg",
-    "status": "in"
-  }
-]
