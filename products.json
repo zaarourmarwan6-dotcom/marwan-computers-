@@ -1,1 +1,50 @@
-
+[
+  {
+    "id": 1,
+    "name": "Dell Gaming 5500",
+    "category": "لابتوب",
+    "price": 600,
+    "specs": "Core i7 10th Gen / 16GB RAM / 512GB NVMe / RTX 2060 / 15.6 Inch 144Hz",
+    "status": "in"
+  },
+  {
+    "id": 2,
+    "name": "Lenovo ThinkPad X1 Yoga",
+    "category": "لابتوب",
+    "price": 299,
+    "specs": "Touch Screen / Core i5 8th Gen / 16GB RAM / 256GB NVMe / 14.0 Inch / مع كفالة خطية 3 أشهر",
+    "status": "in"
+  },
+  {
+    "id": 3,
+    "name": "Lenovo ThinkPad X380 Yoga",
+    "category": "لابتوب",
+    "price": 299,
+    "specs": "Touch Screen / Core i5 8th Gen / 16GB RAM / 256GB NVMe / 14.0 Inch / مع كفالة خطية 3 أشهر",
+    "status": "in"
+  },
+  {
+    "id": 4,
+    "name": "Game Projector 2 in 1",
+    "category": "إلكترونيات",
+    "price": 55,
+    "specs": "2.4G Wireless / Professional Chip / 3D Games / Supports Netflix, YouTube, Spotify / WiFi 6",
+    "status": "in"
+  },
+  {
+    "id": 5,
+    "name": "Wireless Barcode Scanner",
+    "category": "إلكترونيات",
+    "price": 35,
+    "specs": "Wireless Laser Diode Barcode Reader / Easy to use",
+    "status": "in"
+  },
+  {
+    "id": 6,
+    "name": "TP-Link Wi-Fi Range Extender",
+    "category": "شبكات",
+    "price": 25,
+    "specs": "300Mbps Wi-Fi Range Extender / TL-WA850RE / Stable Extension / Access Point Mode",
+    "status": "in"
+  }
+]
