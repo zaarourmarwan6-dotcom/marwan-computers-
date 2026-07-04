@@ -1,50 +1,56 @@
 [
   {
     "id": 1,
-    "name": "Dell Gaming 5500",
-    "category": "لابتوب",
+    "name": "Dell G5 5500 Gaming Laptop",
+    "category": "لابتوبات",
     "price": 600,
-    "specs": "Core i7 10th Gen / 16GB RAM / 512GB NVMe / RTX 2060 / 15.6 Inch 144Hz",
+    "specs": "Core i7 10th Gen | 16GB RAM | 512GB NVMe SSD | RTX 2060 | 15.6\" 144Hz Screen",
+    "image": "",
     "status": "in"
   },
   {
     "id": 2,
-    "name": "Lenovo ThinkPad X1 Yoga",
-    "category": "لابتوب",
+    "name": "X1 Yoga Lenovo Touch Screen",
+    "category": "لابتوبات",
     "price": 299,
-    "specs": "Touch Screen / Core i5 8th Gen / 16GB RAM / 256GB NVMe / 14.0 Inch / مع كفالة خطية 3 أشهر",
+    "specs": "Core i5 8th Gen | 16GB RAM | 256GB NVMe SSD | 14.0\" Touch Screen | مع كفالة خطية 3 أشهر",
+    "image": "",
     "status": "in"
   },
   {
     "id": 3,
-    "name": "Lenovo ThinkPad X380 Yoga",
-    "category": "لابتوب",
+    "name": "X380 Yoga Lenovo Touch Screen",
+    "category": "لابتوبات",
     "price": 299,
-    "specs": "Touch Screen / Core i5 8th Gen / 16GB RAM / 256GB NVMe / 14.0 Inch / مع كفالة خطية 3 أشهر",
+    "specs": "Core i5 8th Gen | 16GB RAM | 256GB NVMe SSD | 14.0\" Touch Screen | مع كفالة خطية 3 أشهر",
+    "image": "",
     "status": "in"
   },
   {
     "id": 4,
-    "name": "Game Projector 2 in 1",
-    "category": "إلكترونيات",
-    "price": 55,
-    "specs": "2.4G Wireless / Professional Chip / 3D Games / Supports Netflix, YouTube, Spotify / WiFi 6",
+    "name": "TP-Link 300Mbps Wi-Fi Range Extender",
+    "category": "شبكات",
+    "price": 25,
+    "specs": "TL-WA850RE | Stable Wi-Fi Extension | Compatible with any Wi-Fi Router | Easy Setup via Tether App",
+    "image": "",
     "status": "in"
   },
   {
     "id": 5,
-    "name": "Wireless Barcode Scanner",
-    "category": "إلكترونيات",
-    "price": 35,
-    "specs": "Wireless Laser Diode Barcode Reader / Easy to use",
+    "name": "Game Projector 2 in 1",
+    "category": "أجهزة عرض",
+    "price": 55,
+    "specs": "2.4G Wireless | Professional Chip | Supports 3D Games, 4K Cameras, WiFi 6 | YouTube, Netflix, Spotify, Prime Video",
+    "image": "",
     "status": "in"
   },
   {
     "id": 6,
-    "name": "TP-Link Wi-Fi Range Extender",
-    "category": "شبكات",
-    "price": 25,
-    "specs": "300Mbps Wi-Fi Range Extender / TL-WA850RE / Stable Extension / Access Point Mode",
+    "name": "Wireless Barcode Scanner",
+    "category": "أجهزة ومستلزمات",
+    "price": 35,
+    "specs": "Wireless Handheld Barcode Reader | 650nm Laser Diode | High Speed Scanning",
+    "image": "",
     "status": "in"
   }
 ]
