@@ -3,7 +3,6 @@ let cart = [];
 let currentCategory = "الكل";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // جلب المنتجات من ملف JSON
   fetch('products.json')
     .then(response => response.json())
     .then(data => {
@@ -78,12 +77,14 @@ function updateCartUI() {
   const totalSum = document.getElementById('cartTotalSum');
   
   const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
-  badge.textContent = totalCount;
-  badge.style.display = totalCount > 0 ? 'flex' : 'none';
+  if(badge) {
+    badge.textContent = totalCount;
+    badge.style.display = totalCount > 0 ? 'flex' : 'none';
+  }
   
   if(cart.length === 0) {
-    itemsContainer.innerHTML = '<div class="cart-empty">السلة فارغة حالياً</div>';
-    totalSum.textContent = "$0";
+    if(itemsContainer) itemsContainer.innerHTML = '<div class="cart-empty">السلة فارغة حالياً</div>';
+    if(totalSum) totalSum.textContent = "$0";
     return;
   }
   
@@ -106,8 +107,8 @@ function updateCartUI() {
       </div>
     `;
   });
-  itemsContainer.innerHTML = html;
-  totalSum.textContent = `$${total}`;
+  if(itemsContainer) itemsContainer.innerHTML = html;
+  if(totalSum) totalSum.textContent = `$${total}`;
 }
 
 function checkoutWhatsApp() {
@@ -125,19 +126,18 @@ function checkoutWhatsApp() {
 function renderShop() {
   const shopGrid = document.getElementById('shopGrid') || document.querySelector('.products-grid') || document.querySelector('.grid');
   const featuredGrid = document.getElementById('featuredGrid');
-  const searchQuery = document.getElementById('shopSearch') ? document.getElementById('shopSearch').value.toLowerCase() : '';
   
   if (!products || products.length === 0) return;
 
   const generateCard = p => `
-    <div class="product-card" style="border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; background: var(--bg-card, #0d1530); margin: 10px;">
+    <div class="product-card" style="border: 1px solid rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; background: #0d1530; margin: 10px; color: white;">
       <div class="product-card-body">
-        <div class="product-card-category" style="font-size: 12px; color: var(--primary, #0066ff);">${p.category}</div>
-        <h3 class="product-card-name" style="margin: 5px 0; font-size: 18px; color: #fff;">${p.name}</h3>
+        <div class="product-card-category" style="font-size: 12px; color: #0066ff;">${p.category}</div>
+        <h3 class="product-card-name" style="margin: 5px 0; font-size: 18px;">${p.name}</h3>
         <p class="product-card-specs" style="font-size: 13px; opacity: 0.7; color: #ccc;">${p.specs}</p>
         <div class="product-card-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
-          <span class="product-price" style="font-weight: bold; color: #fff; font-size: 20px;">$${p.price}</span>
-          <button class="cart-btn" onclick="addToCart(${p.id})" style="background: var(--primary, #0066ff); color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+          <span class="product-price" style="font-weight: bold; font-size: 20px;">$${p.price}</span>
+          <button class="cart-btn" onclick="addToCart(${p.id})" style="background: #0066ff; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
             إضافة للسلة
           </button>
         </div>
@@ -145,27 +145,8 @@ function renderShop() {
     </div>
   `;
 
-  if (shopGrid) {
-    shopGrid.innerHTML = products.map(generateCard).join('');
-  }
-
-  if (featuredGrid) {
-    featuredGrid.innerHTML = products.slice(0, 3).map(generateCard).join('');
-  } else if (!shopGrid && document.querySelector('main')) {
-    let fallbackGrid = document.getElementById('fallback-products');
-    if (!fallbackGrid) {
-      fallbackGrid = document.createElement('div');
-      fallbackGrid.id = 'fallback-products';
-      fallbackGrid.style.display = 'grid';
-      fallbackGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(280px, 1fr))';
-      fallbackGrid.style.gap = '20px';
-      fallbackGrid.style.padding = '40px 20px';
-      fallbackGrid.style.maxWidth = '1200px';
-      fallbackGrid.style.margin = '0 auto';
-      document.querySelector('main').appendChild(fallbackGrid);
-    }
-    fallbackGrid.innerHTML = products.map(generateCard).join('');
-  }
+  if (shopGrid) shopGrid.innerHTML = products.map(generateCard).join('');
+  if (featuredGrid) featuredGrid.innerHTML = products.slice(0, 3).map(generateCard).join('');
   
   if (window.lucide) lucide.createIcons();
 }
@@ -193,102 +174,12 @@ function logout() {
   document.body.style.paddingTop = "0";
   navTo('home');
 }
-function showAdminPanel() {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-admin').classList.add('active');
-  renderAdminTable();
-}
-
-function renderAdminTable() {
-  const tbody = document.getElementById('adminTableBody');
-  const q = document.getElementById('adminSearch').value.toLowerCase();
-  let filtered = products.filter(p => p.name.toLowerCase().includes(q));
-
-  tbody.innerHTML = filtered.map(p => `
-    <tr>
-      <td>
-        <div class="product-cell">
-          <div class="cell-info"><h4>${p.name}</h4><span>${p.specs}</span></div>
-        </div>
-      </td>
-      <td>${p.category}</td>
-      <td>$${p.price}</td>
-      <td><span class="status-badge ${p.status === 'in' ? 's-in' : 's-out'}">${p.status === 'in' ? 'متوفر' : 'نفد'}</span></td>
-      <td class="actions-cell">
-        <button class="btn-icon" onclick="editProduct(${p.id})"><i data-lucide="edit" width="14" height="14"></i></button>
-        <button class="btn-icon" style="color:var(--error);" onclick="deleteProduct(${p.id})"><i data-lucide="trash-2" width="14" height="14"></i></button>
-      </td>
-    </tr>
-  `).join('');
-  if(window.lucide) lucide.createIcons();
-}
-
-function openProductModal() {
-  document.getElementById('productForm').reset();
-  document.getElementById('pId').value = '';
-  document.getElementById('modalTitle').textContent = "إضافة منتج جديد";
-  document.getElementById('productModal').classList.add('open');
-}
-function closeProductModal(e) {
-  if(!e || e.target.classList.contains('modal-overlay')) {
-    document.getElementById('productModal').classList.remove('open');
-  }
-}
-
-function saveProduct(e) {
-  e.preventDefault();
-  const id = document.getElementById('pId').value;
-  const name = document.getElementById('pName').value;
-  const category = document.getElementById('pCategory').value;
-  const price = parseFloat(document.getElementById('pPrice').value);
-  const specs = document.getElementById('pSpecs').value;
-  const status = document.getElementById('pStatus').value;
-  
-  if(id) {
-    const index = products.findIndex(p => p.id == id);
-    if(index !== -1) products[index] = { id: parseInt(id), name, category, price, specs, status };
-  } else {
-    const newId = products.length ? Math.max(...products.map(p => p.id)) + 1 : 1;
-    products.push({ id: newId, name, category, price, specs, status });
-  }
-  
-  closeProductModal(null);
-  renderShop();
-  renderAdminTable();
-  showToast("تم الحفظ! انسخ المنتجات لملف products.json لتحديثها للزبائن.");
-}
-
-function editProduct(id) {
-  const p = products.find(prod => prod.id === id);
-  if(!p) return;
-  document.getElementById('pId').value = p.id;
-  document.getElementById('pName').value = p.name;
-  document.getElementById('pCategory').value = p.category;
-  document.getElementById('pPrice').value = p.price;
-  document.getElementById('pSpecs').value = p.specs;
-  document.getElementById('pStatus').value = p.status;
-  document.getElementById('modalTitle').textContent = "تعديل المنتج";
-  document.getElementById('productModal').classList.add('open');
-}
-
-function deleteProduct(id) {
-  if(confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
-    products = products.filter(p => p.id !== id);
-    renderShop();
-    renderAdminTable();
-    showToast("تم حذف المنتج");
-  }
-}
 
 function showToast(msg) {
   const toast = document.getElementById('toast');
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-function handleContact(e) {
-  e.preventDefault();
-  showToast("تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.");
-  document.getElementById('cForm').reset();
+  if(toast) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
 }
