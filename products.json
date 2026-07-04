@@ -5,7 +5,7 @@
     "category": "لابتوبات",
     "price": 600,
     "specs": "Core i7 10th Gen | 16GB RAM | 512GB NVMe SSD | RTX 2060 | 15.6\" 144Hz Screen",
-    "image": "",
+    "image": "dell.jpg",
     "status": "in"
   },
   {
@@ -14,7 +14,7 @@
     "category": "لابتوبات",
     "price": 299,
     "specs": "Core i5 8th Gen | 16GB RAM | 256GB NVMe SSD | 14.0\" Touch Screen | مع كفالة خطية 3 أشهر",
-    "image": "",
+    "image": "yoga1.jpg",
     "status": "in"
   },
   {
@@ -23,7 +23,7 @@
     "category": "لابتوبات",
     "price": 299,
     "specs": "Core i5 8th Gen | 16GB RAM | 256GB NVMe SSD | 14.0\" Touch Screen | مع كفالة خطية 3 أشهر",
-    "image": "",
+    "image": "yoga2.jpg",
     "status": "in"
   },
   {
@@ -32,7 +32,7 @@
     "category": "شبكات",
     "price": 25,
     "specs": "TL-WA850RE | Stable Wi-Fi Extension | Compatible with any Wi-Fi Router | Easy Setup via Tether App",
-    "image": "",
+    "image": "tplink.jpg",
     "status": "in"
   },
   {
@@ -41,7 +41,7 @@
     "category": "أجهزة عرض",
     "price": 55,
     "specs": "2.4G Wireless | Professional Chip | Supports 3D Games, 4K Cameras, WiFi 6 | YouTube, Netflix, Spotify, Prime Video",
-    "image": "",
+    "image": "projector.jpg",
     "status": "in"
   },
   {
@@ -50,7 +50,79 @@
     "category": "أجهزة ومستلزمات",
     "price": 35,
     "specs": "Wireless Handheld Barcode Reader | 650nm Laser Diode | High Speed Scanning",
-    "image": "",
+    "image": "scanner.jpg",
+    "status": "in"
+  },
+  {
+    "id": 7,
+    "name": "TP-Link 4G LTE Mobile Wi-Fi M7200",
+    "category": "شبكات",
+    "price": 45,
+    "specs": "M7200 | SIM Card Plug & Play | Go Anywhere Connect Everywhere | Up to 8 Hours Usage",
+    "image": "m7200.jpg",
+    "status": "in"
+  },
+  {
+    "id": 8,
+    "name": "Canon i-SENSYS LBP6030B Laser Printer",
+    "category": "أجهزة ومستلزمات",
+    "price": 150,
+    "specs": "Compact and Reliable Laser Printer | High Quality Black & White Printing | Fast Print Speed | Uses Cartridge 725",
+    "image": "lbp6030.jpg",
+    "status": "in"
+  },
+  {
+    "id": 9,
+    "name": "Logitech Silent M220 Wireless Mouse",
+    "category": "أجهزة ومستلزمات",
+    "price": 8,
+    "specs": "Silent M220 Wireless Mouse | 18-Month Battery Life | Comfortable & Portable Design",
+    "image": "m220.jpg",
+    "status": "in"
+  },
+  {
+    "id": 10,
+    "name": "Seagate Expansion External HDD 1TB",
+    "category": "أجهزة ومستلزمات",
+    "price": 65,
+    "specs": "External HDD USB 3.0 | 1TB Storage Capacity | Portable Drive with Software | High Speed Data Transfer",
+    "image": "seagate1tb.jpg",
+    "status": "in"
+  },
+  {
+    "id": 11,
+    "name": "Seagate Expansion External HDD 2TB",
+    "category": "أجهزة ومستلزمات",
+    "price": 85,
+    "specs": "External HDD USB 3.0 | 2TB Storage Capacity | Portable Drive with Software | High Speed Data Transfer",
+    "image": "seagate2tb.jpg",
+    "status": "in"
+  },
+  {
+    "id": 12,
+    "name": "Seagate Expansion External HDD 4TB",
+    "category": "أجهزة ومستلزمات",
+    "price": 125,
+    "specs": "External HDD USB 3.0 | 4TB Storage Capacity | Portable Drive with Software | High Speed Data Transfer",
+    "image": "seagate4tb.jpg",
+    "status": "in"
+  },
+  {
+    "id": 13,
+    "name": "Bloody V7M Gaming Mouse 3200 CPI",
+    "category": "أجهزة ومستلزمات",
+    "price": 22,
+    "specs": "Gaming Mouse 3200 CPI | 160K Onboard Memory | 1,000 Hz Report Rate | Metal X'Glide Armor Boot",
+    "image": "v7m.jpg",
+    "status": "in"
+  },
+  {
+    "id": 14,
+    "name": "Canon i-SENSYS MF3010 Laser All-In-One",
+    "category": "أجهزة ومستلزمات",
+    "price": 215,
+    "specs": "Laser All-In-One Printer | Print, Scan, and Copy easily from your desktop | Uses Cartridge 725",
+    "image": "mf3010.jpg",
     "status": "in"
   }
 ]
