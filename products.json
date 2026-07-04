@@ -5,7 +5,7 @@
     "category": "لابتوبات",
     "price": 600,
     "specs": "Core i7 10th Gen | 16GB RAM | 512GB NVMe SSD | RTX 2060 | 15.6\" 144Hz Screen",
-    "image": "https://i.ibb.co/C3YFp0f8/Whats-App-Image-2026-07-03-at-2-50-36-PM.jpg",
+    "image": "dell.jpg.jpeg",
     "status": "in"
   },
   {
@@ -14,7 +14,7 @@
     "category": "لابتوبات",
     "price": 299,
     "specs": "Core i5 8th Gen | 16GB RAM | 256GB NVMe SSD | 14.0\" Touch Screen | مع كفالة خطية 3 أشهر",
-    "image": "https://i.ibb.co/LzqM93v4/Whats-App-Image-2026-07-03-at-2-50-37-PM.jpg",
+    "image": "yoga1.jpg.jpeg",
     "status": "in"
   },
   {
@@ -23,7 +23,7 @@
     "category": "لابتوبات",
     "price": 299,
     "specs": "Core i5 8th Gen | 16GB RAM | 256GB NVMe SSD | 14.0\" Touch Screen | مع كفالة خطية 3 أشهر",
-    "image": "https://i.ibb.co/fVvWvMKM/Whats-App-Image-2026-07-03-at-2-50-38-PM.jpg",
+    "image": "yoga1.jpg.jpeg",
     "status": "in"
   },
   {
@@ -32,7 +32,7 @@
     "category": "شبكات",
     "price": 25,
     "specs": "TL-WA850RE | Stable Wi-Fi Extension | Compatible with any Wi-Fi Router | Easy Setup via Tether App",
-    "image": "https://i.ibb.co/674fV6Xj/Whats-App-Image-2026-07-03-at-2-50-38-PM-1.jpg",
+    "image": "tplink.jpg.jpeg",
     "status": "in"
   },
   {
@@ -41,7 +41,7 @@
     "category": "أجهزة عرض",
     "price": 55,
     "specs": "2.4G Wireless | Professional Chip | Supports 3D Games, 4K Cameras, WiFi 6 | YouTube, Netflix, Spotify",
-    "image": "https://i.ibb.co/8DwVkv8X/Whats-App-Image-2026-07-03-at-2-50-39-PM-2.jpg",
+    "image": "projector.jpg.jpeg",
     "status": "in"
   },
   {
@@ -50,7 +50,7 @@
     "category": "أجهزة ومستلزمات",
     "price": 35,
     "specs": "Wireless Handheld Barcode Reader | 650nm Laser Diode | High Speed Scanning",
-    "image": "https://i.ibb.co/0VpZ4m6z/Whats-App-Image-2026-07-03-at-2-50-39-PM-3.jpg",
+    "image": "scanner.jpg.jpeg",
     "status": "in"
   },
   {
@@ -59,7 +59,7 @@
     "category": "شبكات",
     "price": 45,
     "specs": "M7200 | SIM Card Plug & Play | Go Anywhere Connect Everywhere | Up to 8 Hours Usage",
-    "image": "https://i.ibb.co/Z6NqSshk/Whats-App-Image-2026-07-03-at-2-50-39-PM-1.jpg",
+    "image": "m7200.jpg.jpeg",
     "status": "in"
   },
   {
@@ -68,7 +68,7 @@
     "category": "أجهزة ومستلزمات",
     "price": 150,
     "specs": "Compact and Reliable Laser Printer | High Quality Black & White Printing | Uses Cartridge 725",
-    "image": "https://i.ibb.co/mFbyH86c/Whats-App-Image-2026-07-03-at-2-50-39-PM.jpg",
+    "image": "lbp6030.jpg.jpeg",
     "status": "in"
   },
   {
@@ -77,52 +77,34 @@
     "category": "أجهزة ومستلزمات",
     "price": 8,
     "specs": "Silent M220 Wireless Mouse | 18-Month Battery Life | Comfortable & Portable Design",
-    "image": "https://i.ibb.co/3mN68mPh/Whats-App-Image-2026-07-03-at-2-50-40-PM-1.jpg",
+    "image": "m220.jpg.jpeg",
     "status": "in"
   },
   {
     "id": 10,
-    "name": "Seagate Expansion External HDD 1TB",
+    "name": "Seagate Expansion External HDD",
     "category": "أجهزة ومستلزمات",
     "price": 65,
-    "specs": "External HDD USB 3.0 | 1TB Storage Capacity | Portable Drive with Software",
-    "image": "https://i.ibb.co/YBJgWJ9S/Whats-App-Image-2026-07-03-at-2-50-40-PM.jpg",
+    "specs": "External HDD USB 3.0 | Available Sizes: 1TB (65$) / 2TB (85$) / 4TB (125$) | Portable Drive with Software",
+    "image": "seagate1tb.jpg.jpeg",
     "status": "in"
   },
   {
     "id": 11,
-    "name": "Seagate Expansion External HDD 2TB",
-    "category": "أجهزة ومستلزمات",
-    "price": 85,
-    "specs": "External HDD USB 3.0 | 2TB Storage Capacity | Portable Drive with Software",
-    "image": "https://i.ibb.co/YBJgWJ9S/Whats-App-Image-2026-07-03-at-2-50-40-PM.jpg",
-    "status": "in"
-  },
-  {
-    "id": 12,
-    "name": "Seagate Expansion External HDD 4TB",
-    "category": "أجهزة ومستلزمات",
-    "price": 125,
-    "specs": "External HDD USB 3.0 | 4TB Storage Capacity | Portable Drive with Software",
-    "image": "https://i.ibb.co/YBJgWJ9S/Whats-App-Image-2026-07-03-at-2-50-40-PM.jpg",
-    "status": "in"
-  },
-  {
-    "id": 13,
     "name": "Bloody V7M Gaming Mouse 3200 CPI",
     "category": "أجهزة ومستلزمات",
     "price": 22,
     "specs": "Gaming Mouse 3200 CPI | 160K Onboard Memory | 1,000 Hz Report Rate | Metal X'Glide Armor Boot",
-    "image": "https://i.ibb.co/wZpX8N3d/Whats-App-Image-2026-07-03-at-2-50-41-PM.jpg",
+    "image": "v7m.jpg.jpeg",
     "status": "in"
   },
   {
-    "id": 14,
+    "id": 12,
     "name": "Canon i-SENSYS MF3010 Laser All-In-One",
     "category": "أجهزة ومستلزمات",
     "price": 215,
     "specs": "Laser All-In-One Printer | Print, Scan, and Copy easily from your desktop | Uses Cartridge 725",
-    "image": "https://i.ibb.co/996R9rYn/Whats-App-Image-2026-07-03-at-2-50-43-PM-1.jpg",
+    "image": "mf3010.jpg.jpeg",
     "status": "in"
   }
 ]
