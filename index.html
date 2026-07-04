@@ -96,6 +96,51 @@ async function loadProducts(){
 loadProducts();
 
 </script>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyApGdzrA4CU5at0B4Qvc8J_Dp3-ElfZV94",
+  authDomain: "marwan-computer.firebaseapp.com",
+  projectId: "marwan-computer",
+  storageBucket: "marwan-computer.appspot.com",
+  messagingSenderId: "466148301340",
+  appId: "1:466148301340:web:0bd1766ded93d45e09ddd9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// تحميل المنتجات
+async function loadProducts() {
+  const snap = await getDocs(collection(db, "products"));
+
+  const container = document.getElementById("products");
+  container.innerHTML = "";
+
+  if (snap.empty) {
+    container.innerHTML = "<p>لا توجد منتجات</p>";
+    return;
+  }
+
+  snap.forEach(doc => {
+    const p = doc.data();
+
+    container.innerHTML += `
+      <div class="card">
+        <img src="${p.image || ''}">
+        <h3>${p.name || ''}</h3>
+        <p>${p.description || ''}</p>
+        <b>$${p.price || ''}</b>
+      </div>
+    `;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", loadProducts);
+
+</script>
 </body>
 </html>
