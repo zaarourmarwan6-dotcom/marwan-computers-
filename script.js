@@ -123,7 +123,6 @@ function checkoutWhatsApp() {
 }
 
 function renderShop() {
-  // البحث عن الحاويات بالأسماء المتوقعة في ملف HTML الخاص بك
   const shopGrid = document.getElementById('shopGrid') || document.querySelector('.products-grid') || document.querySelector('.grid');
   const featuredGrid = document.getElementById('featuredGrid');
   const searchQuery = document.getElementById('shopSearch') ? document.getElementById('shopSearch').value.toLowerCase() : '';
@@ -146,16 +145,13 @@ function renderShop() {
     </div>
   `;
 
-  // عرض المنتجات في الحاوية الرئيسية المتاحة للمتجر
   if (shopGrid) {
     shopGrid.innerHTML = products.map(generateCard).join('');
   }
 
-  // عرض المنتجات في واجهة الصفحة الرئيسية أيضاً لضمان ظهورها فوراً
   if (featuredGrid) {
     featuredGrid.innerHTML = products.slice(0, 3).map(generateCard).join('');
   } else if (!shopGrid && document.querySelector('main')) {
-    // إذا لم يجد الحاويات المخصصة، سيقوم بإنشاء قسم خاص بالمنتجات داخل الواجهة فوراً
     let fallbackGrid = document.getElementById('fallback-products');
     if (!fallbackGrid) {
       fallbackGrid = document.createElement('div');
@@ -173,6 +169,8 @@ function renderShop() {
   
   if (window.lucide) lucide.createIcons();
 }
+
+function setCategory(cat) {
   currentCategory = cat;
   renderShop();
 }
