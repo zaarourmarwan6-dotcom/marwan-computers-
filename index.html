@@ -417,9 +417,34 @@ td{padding:12px 18px;font-size:.85rem;vertical-align:middle}
 <script>
 const ADMIN_EMAIL='zaarourmarwan6@gmail.com',ADMIN_PASS='marwan2026';
 let isAdmin=false;
-let products=JSON.parse(localStorage.getItem('mc_products'))||[];
-let categories=JSON.parse(localStorage.getItem('mc_categories'))||[];
-let cart=JSON.parse(localStorage.getItem('mc_cart'))||[];
+let products = [];
+let categories = [];
+let cart = [];
+
+// تحميل كل البيانات من Firebase
+async function loadAll() {
+  const pSnap = await getDocs(collection(db, "products"));
+  products = pSnap.docs.map(d => ({
+    id: d.id,
+    ...d.data()
+  }));
+
+  const cSnap = await getDocs(collection(db, "categories"));
+  categories = cSnap.docs.map(d => ({
+    id: d.id,
+    ...d.data()
+  }));
+
+  // تحديث كل الواجهات
+  renderHome();
+  renderShop();
+  renderAdmin();
+  buildFilters();
+  updateCart();
+}
+document.addEventListener("DOMContentLoaded", loadAll);
+// تشغيل التحميل عند فتح الموقع
+document.addEventListener("DOMContentLoaded", loadAll);
 function save(){localStorage.setItem('mc_products',JSON.stringify(products));localStorage.setItem('mc_categories',JSON.stringify(categories));localStorage.setItem('mc_cart',JSON.stringify(cart))}
 function getCatName(id){const c=categories.find(x=>x.id===id);return c?c.nameAr:id}
 function getCatIcon(c){return{gaming:'monitor',laptops:'laptop',monitors:'monitor',peripherals:'keyboard',components:'cpu',networking:'wifi',security:'camera',cameras:'camera',computers:'monitor'}[c]||'package'}
